@@ -10,5 +10,10 @@ interface RateLimitedObject {
     @RateLimited
     void println(String text);
 
+    @RateLimited
+    void increment();
+
+    int getIncrements();
+
     int noRateLimit();
 }
