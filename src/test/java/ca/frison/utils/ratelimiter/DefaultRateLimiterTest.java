@@ -5,14 +5,14 @@ import org.junit.Test;
 
 public class DefaultRateLimiterTest {
     @Test
-    public void fixedRateLimiterShouldUseDefaultOnRateLimitViolations() throws Exception {
+    public void fixedRateLimiterShouldUseDefaultReturnValueOnRateLimitViolations() throws Exception {
         RateLimitedObject to = getDefaultTestObject(0);
         Assert.assertEquals(0, to.rateLimitedPrimativeCall());
         Assert.assertEquals(null, to.rateLimitedObjectCall());
     }
 
     @Test
-    public void fixedRateLimiterShouldNotUseDefault() throws Exception {
+    public void fixedRateLimiterShouldNotUseDefaultOnNoRateViolation() throws Exception {
         int callLimit = 10;
         RateLimitedObject to = getDefaultTestObject(2*callLimit);
         for (int i = 0; i < callLimit; i++) {
@@ -22,7 +22,7 @@ public class DefaultRateLimiterTest {
     }
 
     @Test
-    public void fixedRateLimiterShouldUseDefaultOnRateViolations() throws Exception {
+    public void fixedRateLimiterShouldUseDefaultReturnValueOnRateViolations() throws Exception {
         int callLimit = 10;
         RateLimitedObject to = getDefaultTestObject(2*callLimit);
         for (int i = 0; i < callLimit; i++) {

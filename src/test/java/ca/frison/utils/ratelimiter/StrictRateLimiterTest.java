@@ -10,7 +10,7 @@ public class StrictRateLimiterTest {
     }
 
     @Test
-    public void strictRateLimiterShouldNotThrowExceptionOnNoFunctionThatIsNotRateLimited() throws Exception {
+    public void strictRateLimiterShouldNotThrowExceptionOnFunctionThatIsNotRateLimited() throws Exception {
         RateLimitedObject to = getStrictTestObject(0);
         to.noRateLimit();
     }
@@ -25,7 +25,7 @@ public class StrictRateLimiterTest {
     }
 
     @Test(expected = RateLimitViolationException.class)
-    public void strictRateLimiterShouldNotThrowExceptionIfRateLimitExceeded() throws Exception {
+    public void strictRateLimiterShouldThrowExceptionIfRateLimitExceededAfterSuccessfulCalls() throws Exception {
         int callLimit = 10;
         RateLimitedObject to = getStrictTestObject(callLimit);
         for (int i = 0; i < callLimit; i++) {
